@@ -1,0 +1,26 @@
+{
+    "name": "water-quality",
+    "version": "0.0.1",
+    "description": "Kanso app to hold NWT water quality data, and wizards for sondes and camera uploads.",
+    "attachments": "static",
+    "modules": "lib",
+    "load": "lib/app",
+    "dependencies": {
+        "attachments": null,
+        "modules": null,
+        "properties": null,
+        "settings": null,
+        "underscore": null,
+        "duality": null,
+        "sanitize": null,
+        "couchtypes": null,
+        "duality-contrib-session-hb": null,
+        "datelib": "0.0.1",
+        "handlebars": null,
+        "handlebars-helpers": "0.0.2",
+        "duality-handlebars": "0.0.2",
+        "base64": null,
+        "async": null,
+        "duality-contrib-session-hb": ">=0.0.2"
+    }
+}
