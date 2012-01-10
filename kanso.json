@@ -11,16 +11,9 @@
         "properties": null,
         "settings": null,
         "underscore": null,
-        "duality": null,
         "sanitize": null,
-        "couchtypes": null,
-        "duality-contrib-session-hb": null,
         "datelib": "0.0.1",
-        "handlebars": null,
-        "handlebars-helpers": "0.0.2",
-        "duality-handlebars": "0.0.2",
         "base64": null,
-        "async": null,
-        "duality-contrib-session-hb": ">=0.0.2"
+        "async": null
     }
 }
