@@ -16,3 +16,4 @@ notifications:
     - mw@data.io
     - caolan.mcmahon@gmail.com
 
+script: "kanso install; kanso push http://localhost:5984/myapp_test"
