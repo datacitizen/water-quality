@@ -9,11 +9,18 @@ before_script:
   - curl -X PUT localhost:5984/myapp_test
   - npm install kanso -g
   - npm install nodeunit -g
+  - "sudo bash test/install_phantom.sh > /dev/null"
+  - sh -e /etc/init.d/xvfb start
+
+
+script: "kanso install; kanso push http://localhost:5984/myapp_test"
+
+after_script:
+  - DISPLAY=:99.0 bash test/run_headless_tests.sh http://localhost:5984/myapp_test
+
 
 notifications:
   email:
     - ryan.ramage@gmail.com
     - mw@data.io
     - caolan.mcmahon@gmail.com
-
-script: "kanso install; kanso push http://localhost:5984/myapp_test"
