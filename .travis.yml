@@ -16,7 +16,7 @@ before_script:
 script: "kanso install; kanso push http://localhost:5984/myapp_test"
 
 after_script:
-  - DISPLAY=:99.0 bash test/run_headless_tests.sh http://localhost:5984/myapp_test
+  - DISPLAY=:99.0 phantomjs test/run-jasmine.js http://localhost:5984/myapp_test/static/js/spec/SpecRunner.html
 
 
 notifications:
