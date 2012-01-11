@@ -1,2 +1,3 @@
 #!/bin/bash
-phantomjs test/run-jasmine.js "$1/static/js/spec/SpecRunner.html"
+nodeunit test/nodeunit
+phantomjs test/run-jasmine.js "$1/_design/water-quality/static/js/spec/SpecRunner.html"
