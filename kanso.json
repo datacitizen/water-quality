@@ -13,6 +13,7 @@
         "sanitize": null,
         "datelib": "0.0.1",
         "base64": null,
-        "async": null
+        "async": null,
+        "metakaolin" : null
     }
 }
