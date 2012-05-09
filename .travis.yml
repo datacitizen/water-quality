@@ -9,7 +9,6 @@ before_script:
   - curl -X PUT localhost:5984/myapp_test
   - npm install kanso -g
   - npm install nodeunit -g
-  - "sudo bash test/install_phantom.sh > /dev/null"
 
 
 
@@ -18,7 +17,7 @@ script: "kanso install; kanso push http://localhost:5984/myapp_test"
 after_script:
   # setup and run tests
   - sh -e /etc/init.d/xvfb start
-  - "export DISPLAY=:99.0; test/run_headless_tests.sh http://localhost:5984/myapp_test"
+  # - "export DISPLAY=:99.0; test/run_headless_tests.sh http://localhost:5984/myapp_test"
   # deploy to a qa server
   - kanso push http://datalaundry:laundrydata@reupholster.iriscouch.com/water-quality
 

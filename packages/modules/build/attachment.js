@@ -11,7 +11,6 @@ var tryRequire = function (a, b) {
 };
 
 var fs = require('fs'),
-    mime = require('mime'),
     jsp = require('uglify-js/lib/parse-js'),
     pro = require('uglify-js/lib/process'),
     modules = require('kanso-utils/modules'),
@@ -38,7 +37,6 @@ module.exports = function (root, path, settings, doc, callback) {
     }
 
     if (settings.modules_attachment === false) {
-        delete doc._modules;
         return callback(null, doc);
     }
 
@@ -46,8 +44,6 @@ module.exports = function (root, path, settings, doc, callback) {
     for (var k in doc._modules) {
         wrapped_modules += modules.wrap(k, utils.getPropertyPath(doc, k));
     }
-
-    delete doc._modules;
 
     fs.readFile(__dirname + '/bootstrap.js', function (err, content) {
         if (err) {
@@ -64,7 +60,7 @@ module.exports = function (root, path, settings, doc, callback) {
             doc._attachments = {};
         }
         doc._attachments['modules.js'] = {
-            'content_type': mime.lookup('modules.js'),
+            'content_type': 'application/json; charset=utf-8',
             'data': new Buffer(data).toString('base64')
         };
 
