@@ -22,6 +22,7 @@
         "async": null,
         "handlebars": null,
         "handlebars-helpers": "0.0.2",
-        "git-info" : null
+        "git-info" : null,
+        "db" : null
     }
 }
