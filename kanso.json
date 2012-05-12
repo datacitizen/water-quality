@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "Kanso app to hold NWT water quality data, and wizards for sondes and camera uploads.",
     "attachments": ["static", "index.html", "loader.html"],
-    "modules": "lib",
+    "modules": ["lib", "views"],
     "load": "lib/app",
     "less": {
             "compile": "static/css/main.less"
