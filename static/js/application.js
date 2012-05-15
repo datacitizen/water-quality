@@ -49,19 +49,70 @@ $(document).ready(function(){
 
     }
 
-    // initialize the map on the "map" div with a given center and zoom
+
+    // Map resolutions as defined on the MapServer information
+    var ESRI102002 = L.CRS.proj4js(
+                        'ESRI:102002',
+                        '+proj=lcc +lat_1=50 +lat_2=70 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs',
+                        new L.Transformation(1, 0, -1, 0)
+                    ),
+        resolutions = [
+            6614.59656252646,
+            4233.34180001693,
+            2116.67090000847,
+            1058.33545000423,
+            529.167725002117,
+            264.583862501058,
+            132.291931250529,
+            99.2189484378969,
+            66.1459656252646,
+            33.0729828126323,
+            19.8437896875794,
+            13.2291931250529,
+            9.26043518753704,
+            5.29167725002117,
+            2.64583862501058,
+            1.32291931250529,
+            0.264583862501058,
+        ];
+
+    // Provide the scale function for the projection
+    ESRI102002.scale = function(zoomLevel) {
+        return 1 / resolutions[zoomLevel];
+    };
+
+    // Setup leaflet
     var map = new L.Map('map', {
+          crs: ESRI102002,
+          continuousWorld: true
+        }),
+        canada = new L.TileLayer.AGSDynamic(
+                          'http://sdw.enr.gov.nt.ca/ArcGIS/rest/services/GNWT/GNWTBasemapLCC/MapServer',
+                               {  maxZoom: resolutions.length - 1,
+                                  minZoom: 0,
+                                  attribution: "To be advised",
+                                  cacheBuster: true,
+                                  continuousWorld: true,
+                                  transparent: false }),
 
-        center: new L.LatLng(60.047222, -112.771389),
-        zoom: 6
-    });
+        // For the future - implement the tile based layer to work of the zyx ArcGIS url
+        // mapUrl = 'http://sdw.enr.gov.nt.ca/ArcGIS/rest/services/GNWT/GNWTBasemapLCC/MapServer/tile/{z}/{y}/{x}'
+        //     canada = new L.TileLayer(mapUrl, {
+        //             scheme: 'xyz',
+        //             maxZoom: resolutions.length - 1,
+        //             minZoom: 0,
+        //             continuousWorld: false,
+        //             attribution: 'To be advised'
+        //         }),
 
-    // create a CloudMade tile layer
-    var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
-        cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18});
+        center = new L.LatLng(64.47279382008166, -101.07421875),
+        searchLayer = null;
 
-    // add the CloudMade layer to the map
-    map.addLayer(cloudmade);
+    map.setView(center, 1).addLayer(canada);
+
+
+
+
 
     map.on('dragend', function(evt) {
         updateItemsDebounced(map.getBounds());

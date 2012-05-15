@@ -23,6 +23,8 @@
         "handlebars": null,
         "handlebars-helpers": "0.0.2",
         "git-info" : null,
-        "db" : null
+        "db" : null,
+        "pointifex-core": null,
+        "pointifex-search": null
     }
 }
