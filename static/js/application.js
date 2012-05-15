@@ -29,6 +29,7 @@ $(document).ready(function(){
             url: './data?bbox=' + args.join(',') ,
             dataType: 'json',
             success: function(data) {
+                console.log(data);
                 if (geojson) {
                     map.removeLayer(geojson);
                 }
@@ -49,6 +50,48 @@ $(document).ready(function(){
 
     }
 
+
+    function getAllStations() {
+        $.ajax({
+            //url: './data?bbox=' + args.join(',') + '&limit=20',
+            url: './stations' ,
+            dataType: 'json',
+            success: function(data) {
+                if (geojson) {
+                    map.removeLayer(geojson);
+                }
+                geojson = new L.GeoJSON(null, {
+                    pointToLayer: function (latlng) {
+                        return new L.CircleMarker(latlng, geojsonMarkerOptions);
+                    }
+                });
+                geojson.on("featureparse", function (e) {
+                    if (e.properties && e.properties.properties){
+                        e.layer.bindPopup(e.properties.properties.GEONAME);
+                    }
+                });
+                geojson.addGeoJSON(data);
+                map.addLayer(geojson);
+            }
+        });
+    }
+    function getAllStations1() {
+        $.ajax({
+            //url: './data?bbox=' + args.join(',') + '&limit=20',
+            url: './stations1' ,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                _.each(data.rows, function(row) {
+                    console.log(row.value.geometry.coordinates);
+                    var latLong = row.value.geometry.coordinates;
+                    var marker = new L.Marker(new L.LatLng(latLong[0], latLong[1]));
+                    map.addLayer(marker);
+                    marker.bindPopup('<b>' + row.key + '</b><br />Water Quality Station. <br/><a href="#/">View Data</a>  ')
+                });
+            }
+        });
+    }
 
     // Map resolutions as defined on the MapServer information
     var ESRI102002 = L.CRS.proj4js(
@@ -111,14 +154,15 @@ $(document).ready(function(){
     map.setView(center, 1).addLayer(canada);
 
 
-
+    getAllStations1();
 
 
     map.on('dragend', function(evt) {
-        updateItemsDebounced(map.getBounds());
+        //getAllStations();
+        //updateItemsDebounced(map.getBounds());
     });
     map.on('zoomend', function(evt) {
-        updateItemsDebounced(map.getBounds());
+        //updateItemsDebounced(map.getBounds());
     });
 
 });

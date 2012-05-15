@@ -1,0 +1,68 @@
+[
+    {
+        "_id" : "106396e7c76777044343c909db0011c8",
+        "type": "station",
+        "name": "L Buffalo River",
+        "geometry": {
+           "type": "Point",
+           "coordinates": [
+               60.047222, -112.771389
+           ]
+        }
+    },
+    {
+        "_id" : "106396e7c76777044343c909db0011c9",
+        "type": "station",
+        "name": "Salt River Data",
+        "geometry": {
+           "type": "Point",
+           "coordinates": [
+               60.021111, -112.350833
+           ]
+        }
+    },
+    {
+        "_id" : "106396e7c76777044343c909db0011d1",
+        "type": "station",
+        "name": "Kakisa River Data",
+        "geometry": {
+           "type": "Point",
+           "coordinates": [
+               60.985833, -117.245278
+           ]
+        }
+    },
+    {
+        "_id" : "106396e7c76777044343c909db0011d2",
+        "type": "station",
+        "name": "Hay River West Channel",
+        "geometry": {
+           "type": "Point",
+           "coordinates": [
+               60.825, -115.778889
+           ]
+        }
+    },
+    {
+        "_id" : "106396e7c76777044343c909db0011d3",
+        "type": "station",
+        "name": "Slave Mouth Data",
+        "geometry": {
+           "type": "Point",
+           "coordinates": [
+               61.273056, -113.541667
+           ]
+        }
+    },
+    {
+        "_id" : "106396e7c76777044343c909db0011d4",
+        "type": "station",
+        "name": "Buffalo River Data",
+        "geometry": {
+           "type": "Point",
+           "coordinates": [
+               60.716111, -114.906944
+           ]
+        }
+    }
+]
