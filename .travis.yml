@@ -20,7 +20,7 @@ after_script:
   # - "export DISPLAY=:99.0; test/run_headless_tests.sh http://localhost:5984/myapp_test"
   # deploy to a qa server
   - kanso push http://datalaundry:laundrydata@reupholster.iriscouch.com/water-quality
-  - kanso upload data/data.json http://datalaundry:laundrydata@reupholster.iriscouch.com/water-quality
+  # - kanso upload data/data.json http://datalaundry:laundrydata@reupholster.iriscouch.com/water-quality
 
 
 
