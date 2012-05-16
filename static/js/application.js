@@ -178,7 +178,9 @@ $(document).ready(function(){
 
 
     function showStation(station) {
-        $('.container').html(handlebars.templates['chart_by_year.html']({name : station}));
+        var name = station.replace(/_/g, ' ');
+
+        $('.container').html(handlebars.templates['chart_by_year.html']({name : name}));
         $.ajax({
             url: './stations/' + station + '/annual' ,
             dataType: 'json',
