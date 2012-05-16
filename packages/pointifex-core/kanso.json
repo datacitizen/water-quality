@@ -1,0 +1,28 @@
+{
+    "name": "pointifex-core",
+    "version": "0.0.1",
+    "description": "Core library for generating Pointifex geospatial applications",
+    "url": "https://github.com/Sidelab/pointifex-core",
+    "categories": ["pointifex"],
+    "attachments": ["static"],
+    "modules": "lib",
+    "load": "lib/pointifex",
+    "less": {
+            "compile": "static/css/core.less"
+    },
+    "handlebars": {
+        "all_partials": true,
+        "templates": "templates"
+    },
+    "dependencies": {
+        "attachments": null,
+        "modules": null,
+        "less-precompiler": null,
+        "properties": null,
+        "underscore": null,
+        "async": null,
+        "handlebars": null,
+        "handlebars-helpers": "0.0.2",
+        "git-info" : null
+    }
+}
