@@ -38,6 +38,16 @@ $(function(){
                     var data_annotated = _.map(data[source].elements, function(row){
                         row.source = source;
                         row.import_date = new Date().getTime();
+                        if (row.date) {
+                            var parsed = Date.parse(row.date);
+                            if (parsed) {
+                                row.month = parsed.getMonth();
+                                row.day = parsed.getDate();
+                            }
+                            else {
+                                console.log(['Error parsing date', row]);
+                            }
+                        }
                         return row;
                     });
 
