@@ -8,7 +8,7 @@ $(function(){
     $('.fort_smith').click(function(){
         $(this).attr('disabled', 'disabled');
         Tabletop({
-            key: '0AhQVbLcvyJvIdGgwVFVLUWZUanRaaHlRb3pDempSVnc',
+            key: '0AhQVbLcvyJvIdEEtX0dkOG1Xd0lpUXNualEwYVVFbEE',
             simpleSheet: false,
             wanted: [ "wqi_sample_value" ],
             callback : function(data, tabletop) {
@@ -28,7 +28,7 @@ $(function(){
     $('.north_sites').click(function(){
         $(this).attr('disabled', 'disabled');
         Tabletop({
-            key: '0AhQVbLcvyJvIdEEtX0dkOG1Xd0lpUXNualEwYVVFbEE',
+            key: '0AhQVbLcvyJvIdGgwVFVLUWZUanRaaHlRb3pDempSVnc',
             simpleSheet: false,
             wanted: [ "Salt River Data", "Buffalo River Data", "L Buffalo River ", "Kakisa River Data", "Hay River West Channel", "Slave Mouth Data" ],
             callback : function(data, tabletop) {
