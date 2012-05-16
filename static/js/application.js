@@ -221,7 +221,8 @@ $(document).ready(function(){
 
 
                 var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-                    graph: graph
+                    graph: graph,
+                    xFormatter: function(x) { return x + "" }
                 } );
 
                 graph.render();
