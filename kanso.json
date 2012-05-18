@@ -24,6 +24,7 @@
         "handlebars-helpers": "0.0.2",
         "git-info" : null,
         "db" : null,
-        "pointifex-core": null
+        "pointifex-core": null,
+        "garden-app-support" : null
     }
 }

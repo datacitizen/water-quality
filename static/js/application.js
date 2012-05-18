@@ -1,6 +1,7 @@
 var _ = require('underscore')._;
 var handlebars = require('handlebars');
 var db = require('db').use('_db');
+var garden = require('garden-app-support');
 
 
 $(document).ready(function(){
@@ -180,7 +181,14 @@ $(document).ready(function(){
     function showStation(station) {
         var name = station.replace(/_/g, ' ');
 
-        $('.container').html(handlebars.templates['chart_by_year.html']({name : name}));
+        var wiki_url = garden.createRedirectUrl('wiki', station);
+        var questions_url = garden.createRedirectUrl('questions', station);
+
+        $('.container').html(handlebars.templates['chart_by_year.html']({
+            name : name,
+            wiki_url : wiki_url,
+            questions_url : questions_url
+        }));
         $.ajax({
             url: './stations/' + station + '/annual' ,
             dataType: 'json',
