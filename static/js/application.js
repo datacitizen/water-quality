@@ -255,6 +255,34 @@ $(document).ready(function(){
                 	legend: legend
                 } );
 
+                var to_close = [];
+                var $last_over;
+                var debounced_about_measurement = _.debounce(function(){
+                    _.each(to_close, function(a){a.popover('hide');})
+                    $last_over.popover('show');
+
+
+                }, 300);
+
+                $('#legend span.label').on('mouseover', function(){
+                    $last_over = $(this);
+                    debounced_about_measurement();
+                }).on('mouseout', function(){
+
+                        to_close.push($(this));
+                }).each(function(){
+                    var $label = $(this);
+                    var measuement =  $label.text();
+
+                    var wiki_url = garden.createRedirectUrl('wiki', measuement);
+                    $label.popover({
+                       title : measuement,
+                       content : '<a href="'+ wiki_url +'">About</a> ',
+                        trigger : 'manual'
+                    });
+                })
+
+
             }
         });
 
