@@ -153,7 +153,6 @@ $(document).ready(function(){
                 success: function(data) {
                     console.log(data);
                     _.each(data.rows, function(row) {
-                        console.log(row.value.geometry.coordinates);
                         var latLong = row.value.geometry.coordinates;
                         var marker = new L.Marker(new L.LatLng(latLong[0], latLong[1]));
                         map.addLayer(marker);
@@ -225,19 +224,17 @@ $(document).ready(function(){
                 });
 
                 if (normalize) {
-                    console.log(memo);
                     plot = _.map(plot, function(point){
                         var min_max = memo[point.name];
                         var range = min_max.max - min_max.min;
                         var d = point.y - min_max.min;
 
-                        console.log(min_max, point.y, d, range);
 
                         point.y = d/range;
                         return point
                     });
                 }
-                console.log(plot);
+
 
                 var byMetric = _.groupBy(plot,function(row){ return row.name  });
 
@@ -296,18 +293,20 @@ $(document).ready(function(){
                 var to_close = [];
                 var $last_over;
                 var debounced_about_measurement = _.debounce(function(){
-                    _.each(to_close, function(a){a.popover('hide');})
+                    $('#legend span.label').popover('hide');
                     $last_over.popover('show');
 
-
+                    to_close = [];
                 }, 300);
 
                 $('#legend span.label').on('mouseover', function(){
                     $last_over = $(this);
                     debounced_about_measurement();
                 }).on('mouseout', function(){
-
-                        to_close.push($(this));
+                    to_close.push($(this));
+                    $(document).one('click', function(){
+                        $('#legend span.label').popover('hide');
+                    })
                 }).each(function(){
                     var $label = $(this);
                     var measuement =  $label.text();
@@ -318,7 +317,10 @@ $(document).ready(function(){
                        content : '<a href="'+ wiki_url +'">About</a> ',
                         trigger : 'manual'
                     });
-                })
+                });
+                $('#chart').mouseover(function(){
+                    $('#legend span.label').popover('hide');
+                });
 
 
             }
