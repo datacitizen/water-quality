@@ -10,8 +10,24 @@
 <h2>{{name}}</h2>
 <a href="{{wiki_url}}">About this station</a>, or <a href="{{questions_url}}">have a question?</a>
 
+
+
+
 <div id="legend_container">
 		<div id="smoother" title="Smoothing"></div>
 		<div id="legend"></div>
 </div>
 <div id="chart"></div>
+<div class="row">
+    <div class="span3 offset4">
+        <ul class="nav nav-pills">
+          <li class="actual-values {{#unless scale}}active{{/unless}}">
+            <a href="#/show/{{station}}">Actual Values</a>
+          </li>
+          <li class="scaled-values {{#if scale}}active{{/if}}">
+              <a href="#/show/{{station}}/scaled">Scaled</a>
+          </li>
+        </ul>
+    </div>
+
+</div>

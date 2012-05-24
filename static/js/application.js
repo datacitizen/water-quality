@@ -178,7 +178,11 @@ $(document).ready(function(){
     }
 
 
-    function showStation(station) {
+    function showStationScaled(station){
+        showStation(station, true)
+    }
+
+    function showStation(station, normalize) {
         var name = station.replace(/_/g, ' ');
 
         var wiki_url = garden.createRedirectUrl('wiki', station);
@@ -187,19 +191,53 @@ $(document).ready(function(){
         $('.container').html(handlebars.templates['chart_by_year.html']({
             name : name,
             wiki_url : wiki_url,
-            questions_url : questions_url
+            questions_url : questions_url,
+            station: station,
+            scale : normalize
         }));
+
+
         $.ajax({
             url: './stations/' + station + '/annual' ,
             dataType: 'json',
             success: function(data) {
 
+
+                var memo = {};
                 var plot = _.map(data.rows, function(row){
                     var avg = row.value.sum / row.value.count;
-                    return { x : row.key[2], y : avg, name: row.key[1]  };
+                    var point = { x : row.key[2], y : avg, name: row.key[1]  };
+
+                    if (normalize) {
+                        var min_max = memo[point.name];
+                        if (!min_max) {
+                            min_max = {
+                                min: point.y,
+                                max: point.y
+                            }
+                        } else {
+                            if (point.y < min_max.min) min_max.min = point.y;
+                            if (point.y > min_max.max) min_max.max = point.y;
+                        }
+                        memo[point.name] = min_max;
+                    }
+                    return point;
                 });
 
+                if (normalize) {
+                    console.log(memo);
+                    plot = _.map(plot, function(point){
+                        var min_max = memo[point.name];
+                        var range = min_max.max - min_max.min;
+                        var d = point.y - min_max.min;
 
+                        console.log(min_max, point.y, d, range);
+
+                        point.y = d/range;
+                        return point
+                    });
+                }
+                console.log(plot);
 
                 var byMetric = _.groupBy(plot,function(row){ return row.name  });
 
@@ -293,7 +331,8 @@ $(document).ready(function(){
 
     var routes = {
       '/' : index,
-      '/show/:id' : showStation
+      '/show/:id' : showStation,
+      '/show/:id/scaled' : showStationScaled
     };
     var router = Router(routes);
     router.init('/');
