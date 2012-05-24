@@ -36,7 +36,7 @@ $(function(){
                 var sources = _.keys(data);
                 _.each(sources, function(source) {
                     var data_annotated = _.map(data[source].elements, function(row){
-                        row.source = source;
+                        row.source = source.trim();
                         row.import_date = new Date().getTime();
                         if (row.date) {
                             var parsed = Date.parse(row.date);
