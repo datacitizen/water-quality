@@ -61,6 +61,25 @@ $(function(){
         });
 
     });
+    $('.nwt-drinking').click(function(){
+        $(this).attr('disabled', 'disabled');
+        Tabletop({
+            key: '0AhQVbLcvyJvIdGJMNF9LdXpOckliSm43ZDNQX1lTSWc',
+            simpleSheet: false,
+            wanted: [ "Readings"],
+            callback : function(data, tabletop) {
+                var data = _.map(data.Readings.elements, function(row){
+                    row.source = 'nwt_drinking_water';
+                    row.import_date = new Date().getTime();
+                    return row;
+                });
+                db.bulkSave(data, function(err, response) {
+                   if (err) console.log('error:', err);
+                    alert('complete!');
+                });
+            }
+        });
+    });
 
 
 })
