@@ -19,6 +19,7 @@ $(function(){
                 });
                 db.bulkSave(data, function(err, response) {
                    if (err) console.log('error:', err);
+                    alert('complete!');
                 });
             }
         });
@@ -53,6 +54,7 @@ $(function(){
 
                     db.bulkSave(data_annotated, function(err, response) {
                        if (err) console.log('error:', err);
+                        alert('complete!');
                     });
                 });
 
