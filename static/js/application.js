@@ -257,7 +257,7 @@ $(document).ready(function(){
 
                 var graph = new Rickshaw.Graph( {
                 	element: document.getElementById("chart"),
-                	width: 760,
+                	width: 700,
                 	height: 500,
                 	renderer: 'line',
                 	series: series

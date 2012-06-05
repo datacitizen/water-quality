@@ -14,6 +14,7 @@ $(function(){
             callback : function(data, tabletop) {
                 var data = _.map(data.wqi_sample_value.elements, function(row){
                     row.source = 'wqi_sample_value';
+                    row.type = 'reading';
                     row.import_date = new Date().getTime();
                     return row;
                 });
@@ -38,6 +39,7 @@ $(function(){
                 _.each(sources, function(source) {
                     var data_annotated = _.map(data[source].elements, function(row){
                         row.source = source.trim();
+                        row.type = 'reading';
                         row.import_date = new Date().getTime();
                         if (row.date) {
                             var parsed = Date.parse(row.date);
@@ -65,6 +67,35 @@ $(function(){
     });
     $('.nwt-drinking').click(function(){
         $(this).attr('disabled', 'disabled');
+
+        // import stations
+        Tabletop({
+            key: '0AhQVbLcvyJvIdGJMNF9LdXpOckliSm43ZDNQX1lTSWc',
+            simpleSheet: false,
+            wanted: [ "Stations"],
+            callback : function(data, tabletop) {
+                var data = _.map(data.Stations.elements, function(row){
+                    row.source = 'nwt_drinking_water';
+                    row.import_date = new Date().getTime();
+                    row.type = 'station';
+                    row.name = row.community;
+                    row.geometry = {
+                        type : 'Point',
+                        coordinates : [
+                            row.lat,
+                            row.lon
+                        ]
+                    }
+                    return row;
+                });
+                db.bulkSave(data, function(err, response) {
+                   if (err) console.log('error:', err);
+
+                });
+            }
+        });
+
+
         Tabletop({
             key: '0AhQVbLcvyJvIdGJMNF9LdXpOckliSm43ZDNQX1lTSWc',
             simpleSheet: false,
@@ -72,6 +103,7 @@ $(function(){
             callback : function(data, tabletop) {
                 var data = _.map(data.Readings.elements, function(row){
                     row.source = 'nwt_drinking_water';
+                    row.type = 'reading';
                     row.import_date = new Date().getTime();
                     return row;
                 });
@@ -81,6 +113,9 @@ $(function(){
                 });
             }
         });
+
+
+
     });
 
 
