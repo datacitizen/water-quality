@@ -25,6 +25,7 @@
         "git-info" : null,
         "db" : null,
         "pointifex-core": null,
-        "garden-app-support" : null
+        "garden-app-support" : null,
+        "sanitize" : null
     }
 }

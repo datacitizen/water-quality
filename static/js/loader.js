@@ -1,5 +1,6 @@
 var db = require('db').use('_db');
 var _  = require('underscore')._;
+var sanitize = require('sanitize');
 
 $(function(){
 
@@ -78,7 +79,8 @@ $(function(){
                     row.source = 'nwt_drinking_water';
                     row.import_date = new Date().getTime();
                     row.type = 'station';
-                    row.name = row.community;
+                    row.name = row.community.replace(/[^A-Za-z0-9_]/g, '_');;
+                    row.displayName = row.community;
                     row.geometry = {
                         type : 'Point',
                         coordinates : [
@@ -104,6 +106,7 @@ $(function(){
                 var data = _.map(data.Readings.elements, function(row){
                     row.source = 'nwt_drinking_water';
                     row.type = 'reading';
+                    row.community = row.community.replace(/[^A-Za-z0-9_]/g, '_');
                     row.import_date = new Date().getTime();
                     return row;
                 });
