@@ -153,13 +153,15 @@ $(document).ready(function(){
                 success: function(data) {
                     console.log(data);
                     _.each(data.rows, function(row) {
-                        var latLong = row.value.geometry.coordinates;
+                        var latLong = row.doc.geometry.coordinates;
                         var marker = new L.Marker(new L.LatLng(latLong[0], latLong[1]));
                         map.addLayer(marker);
 
                         var site_url = row.key.replace(/ /g, '_');
+                        var name = row.key;
+                        if (row.doc.displayName) name = row.doc.displayName;
 
-                        marker.bindPopup('<b>' + row.key + '</b><br />Water Quality Station. <br/><a href="#/show/'+site_url+'">View Data</a>  ')
+                        marker.bindPopup('<b>' + name + '</b><br />Water Quality Station. <br/><a href="#/show/'+site_url+'">View Data</a>  ')
                     });
                 }
             });
