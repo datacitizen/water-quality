@@ -11,25 +11,24 @@
     </script>
 
     <link rel="stylesheet" type="text/css" href="static/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="static/pointifex.css" />
-    <link rel="stylesheet" type="text/css" href="static/js/lib/leaflet/leaflet.css" />
-      <link rel="stylesheet" type="text/css" href="static/css/graph.css" />
-      <link rel="stylesheet" type="text/css" href="static/css/detail.css" />
-      <link rel="stylesheet" type="text/css" href="static/css/legend.css" />
+      <link href="http://serverapi.arcgisonline.com/jsapi/arcgis/2.7/js/dojo/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css" />
 
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="static/js/lib/leaflet/leaflet.ie.css" />
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="static/css/graph.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/detail.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/legend.css" />
     <title>Atlas</title>
   </head>
   <body>
 
+    <div class="container">
+      <div id="mapDiv" style="width:100%; height:400px; border:1px solid #000;"></div>
+    </div>
     <div class="container content-area" role="main">
 
 
     </div>
 
-    <script type="text/javascript" src="static/pointifex.js"></script>
+
     <script type="text/javascript" src="static/js/lib/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="static/js/lib/jquery-ui-1.8.16.custom.min.js"></script>
     <script type="text/javascript" src="/dashboard/_design/dashboard/_rewrite/static/js/topbar.js"></script>
@@ -43,6 +42,10 @@
     <script src="static/js/lib/d3.min.js"  type="text/javascript" ></script>
     <script src="static/js/lib/d3.layout.min.js"  type="text/javascript" ></script>
     <script src="static/js/lib/rickshaw.js"  type="text/javascript" ></script>
+
+    <script src="static/js/lib/proj4js-combined.js" type="text/javascript"></script>
+    <script src="static/js/lib/NWT.js" type="text/javascript"></script>
+    <script src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=2.7" type="text/javascript"></script>
 
     <script src="static/js/application.js"></script>
 
