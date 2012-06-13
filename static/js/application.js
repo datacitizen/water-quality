@@ -18,11 +18,13 @@ function NWTPoint(lat, lng) {
 
 }
 
-function ShowLocation(lat, lng, name, site_url) {
+function ShowLocation(lat, lng, name, site_url, colour) {
     //var point = new esri.geometry.Point(x, y, new esri.SpatialReference({ wkid: 102002 }));
     var point = NWTPoint(lat, lng);
-    //var simpleMarkerSymbol = new esri.symbol.SimpleMarkerSymbol();
-    var bluePin = new esri.symbol.PictureMarkerSymbol('http://water.data.io/waterqualitystation2.png', 50, 50);
+
+    var img = './static/img/waterqualitystation_' + colour + '.png';
+
+    var bluePin = new esri.symbol.PictureMarkerSymbol(img, 50, 50);
     var attr = { "Xcoord": 2, "Ycoord": 3, "Plant": "Mesa Mint" };
     var infoTemplate = new esri.InfoTemplate("Water Quality Station", name + " <br/> <a href='"+ site_url  +"'>View Station</a> ");
     var graphic = new esri.Graphic(point, bluePin, attr, infoTemplate);
@@ -55,9 +57,16 @@ function getAllStations() {
                 var latLong = row.doc.geometry.coordinates;
                 var site_url = '#/show/' + row.key.replace(/ /g, '_');
                 var name = row.key;
+
+                var colour = 'pink';
+                console.log(row.doc);
+                if (row.doc.source == 'wqi_sample_value') colour = 'green';
+                if (row.doc.source == 'nwt_drinking_water') colour = 'yellow';
+
+
                 if (row.doc.displayName) name = row.doc.displayName;
 
-                ShowLocation(latLong[0], latLong[1], name, site_url);
+                ShowLocation(latLong[0], latLong[1], name, site_url, colour);
             });
         }
     });
