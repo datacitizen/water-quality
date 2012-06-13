@@ -1,2 +1,2 @@
-[![Build Status](https://secure.travis-ci.org/datalaundry/water-quality.png)](http://travis-ci.org/datalaundry/water-quality)
+[![Build Status](https://secure.travis-ci.org/datacitizen/water-quality.png)](http://travis-ci.org/datacitizen/water-quality)
 
