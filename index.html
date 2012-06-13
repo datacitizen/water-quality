@@ -2,6 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script>
+      // ensure trailing slash on _rewrite path
+      if (!/\/$/.test(window.location.pathname)) {
+        window.location = window.location.pathname + '/' + location.hash;
+      }
+    </script>
+
     <link rel="stylesheet" type="text/css" href="static/css/main.css" />
     <link rel="stylesheet" type="text/css" href="static/pointifex.css" />
     <link rel="stylesheet" type="text/css" href="static/js/lib/leaflet/leaflet.css" />
@@ -20,6 +28,7 @@
 
 
     </div>
+
     <script type="text/javascript" src="static/pointifex.js"></script>
     <script type="text/javascript" src="static/js/lib/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="static/js/lib/jquery-ui-1.8.16.custom.min.js"></script>
