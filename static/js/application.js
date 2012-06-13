@@ -84,7 +84,7 @@ $(document).ready(function(){
 
     function index() {
 
-        $('.container').html(handlebars.templates['map_box.html']({}))
+        $('.content-area').html(handlebars.templates['map_box.html']({}))
         // Map resolutions as defined on the MapServer information
         var ESRI102002 = L.CRS.proj4js(
                             'ESRI:102002',
@@ -189,7 +189,7 @@ $(document).ready(function(){
         var wiki_url = garden.createRedirectUrl('wiki', station);
         var questions_url = garden.createRedirectUrl('questions', station);
 
-        $('.container').html(handlebars.templates['chart_by_year.html']({
+        $('.content-area').html(handlebars.templates['chart_by_year.html']({
             name : name,
             wiki_url : wiki_url,
             questions_url : questions_url,
