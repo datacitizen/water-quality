@@ -148,7 +148,7 @@ $(document).ready(function(){
         function getAllStations1() {
             $.ajax({
                 //url: './data?bbox=' + args.join(',') + '&limit=20',
-                url: './stations1' ,
+                url: './stations' ,
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
